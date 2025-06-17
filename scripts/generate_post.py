@@ -3,7 +3,7 @@ from openai import OpenAI
 from datetime import datetime
 
 # posts 디렉토리 생성 (없으면 자동 생성)
-os.makedirs("posts", exist_ok=True)
+os.makedirs("_posts", exist_ok=True)
 
 # OpenAI 클라이언트 설정 (환경변수에 API 키 필요)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -53,11 +53,25 @@ response = client.chat.completions.create(
 )
 
 # 결과 내용 추출
-markdown = response.choices[0].message.content
+
+# 결과 내용 추출
+markdown_body = response.choices[0].message.content.strip()
+
+# Front Matter 자동 생성
+front_matter = f"""---
+layout: single
+title: "자동 생성된 포스트"
+date: {today} 10:00:00 +0900
+categories: [blog]
+tags: [gpt, 자동작성]
+show_date: false
+---
+
+"""
 
 # 파일 저장
 filename = f"_posts/{today}-auto.md"
 with open(filename, "w", encoding="utf-8") as f:
-    f.write(markdown)
+    f.write(front_matter + markdown_body)
 
 print(f"✅ Blog post saved to '{filename}'")
