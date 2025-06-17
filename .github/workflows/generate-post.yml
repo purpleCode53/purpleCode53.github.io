@@ -17,8 +17,8 @@ jobs:
         with:
           python-version: 3.13.5
 
-      - name: Install OpenAI
-        run: pip install openai
+      - name: Install latest OpenAI SDK
+        run: pip install openai --upgrade  # 최신 버전 설치
 
       - name: Run GPT Script
         run: python scripts/generate_post.py
