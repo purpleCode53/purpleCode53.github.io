@@ -3,6 +3,8 @@ from openai import OpenAI
 from datetime import datetime
 import re
 
+# posts 폴더 자동 생성
+os.makedirs("posts", exist_ok=True)
 # OpenAI 클라이언트 초기화 (최신 방식)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
