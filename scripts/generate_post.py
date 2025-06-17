@@ -56,7 +56,7 @@ response = client.chat.completions.create(
 markdown = response.choices[0].message.content
 
 # 파일 저장
-filename = f"posts/{today}-auto.md"
+filename = f"_posts/{today}-auto.md"
 with open(filename, "w", encoding="utf-8") as f:
     f.write(markdown)
 
