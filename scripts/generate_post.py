@@ -1,6 +1,5 @@
 import os
 import re
-import unicodedata
 from openai import OpenAI
 from datetime import datetime
 

@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "개발 블로그"
+title: "품질 높은 코드를 추구하는 개발자"
 author_profile: true
 header:
   overlay_color: "#000"
