@@ -7,6 +7,8 @@ header:
   overlay_color: "#000"
   overlay_filter: "0.2"
   overlay_image: /assets/images/header.jpg  # 배경 이미지 없으면 생략 가능
+sidebar:
+  nav: "main"
 ---
 
 안녕하세요 👋  
