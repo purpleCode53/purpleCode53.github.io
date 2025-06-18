@@ -3,18 +3,12 @@ import re
 from openai import OpenAI
 from datetime import datetime
 
-# OpenAI 클라이언트 초기화 (환경변수에서 API 키 가져옴)
+# OpenAI 클라이언트 초기화
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# 오늘 날짜
+# 날짜 설정
 today = datetime.now().strftime("%Y-%m-%d")
 today_datetime = datetime.now().strftime("%Y-%m-%d 10:00:00 +0900")
-
-# slugify 함수 (파일명용)
-def slugify(text):
-    text = re.sub(r"[^\w\s가-힣-]", "", text)
-    text = text.strip().lower()
-    return re.sub(r"[\s]+", "-", text)
 
 # 디렉토리 생성
 os.makedirs("_posts", exist_ok=True)
@@ -31,29 +25,34 @@ prompt = f"""
    - `title`: 글의 주제를 명확하게 표현
    - `date`: 오늘 날짜와 시간 (형식: YYYY-MM-DD HH:mm:ss +0900)
    - `categories`: 글의 주제에 맞는 1개 이상의 카테고리
-   - `tags`: 관련된 핵심 키워드 **3개에서 7개 사이**
+   - `tags`: 관련된 핵심 키워드 **2개에서 7개 사이**
+   - `slug`: `title`을 영어로 번역한 후, 소문자로 변환하고 공백과 특수문자는 하이픈(-)으로 치환한 형태로 작성
    - `show_date: false`
 
-2. 본문은 다음 구조를 따라줘:
-   - 서론 (문제 인식 또는 주제 도입)
+2. 본문은 블로그 포스팅 스타일로 작성하고, 다음 구성에 맞춰 자연스럽게 이어지는 흐름으로 작성해줘:
+   - 서론: 주제에 대한 문제 인식 또는 흥미로운 질문으로 시작
    - 주요 개념 설명
-   - 방식 또는 종류별 비교 (2~3개 이상)
+   - 방식 또는 종류별 비교
    - 각 방식의 장단점 분석
    - 마크다운 테이블로 정리
    - 실무에서의 활용 팁
    - 마무리 요약
 
-3. 마크다운 문법을 정확히 사용해:
+3. 각 본문 구조의 제목은 "서론", "주요 개념 설명" 같은 고정 문구 대신, **글 내용에 어울리는 자연스러운 소제목**으로 작성해줘.
+
+4. **검색엔진 최적화(SEO)를 고려해**, 해당 주제와 관련된 검색량이 높은 **관련 키워드, 기술용어, 구체적인 표현**을 본문에 적극적으로 사용해줘. 예: "성능 최적화", "DB 인덱스 구조", "빠른 검색을 위한 인덱싱 전략" 등
+
+5. 마크다운 문법을 정확히 사용해:
    - 제목은 `##`, 소제목은 `###`, 목록은 `-`, 표는 `|` 사용
    - 코드 블록은 언어명 포함해서 사용 (예: ```java)
 
-4. 문체는 너무 캐주얼하지 않고, **정확하고 실무적인 설명** 위주로 작성해줘.
+6. 문체는 너무 캐주얼하지 않고, **정확하고 실무 중심적인 설명** 위주로 작성해줘.
 
-5. **최소 800자**, 가능하면 **1,000자에 가까운 본문 분량**으로 충분한 내용을 담아줘.
+7. **최소 800자**, 가능하면 **1,000자에 가까운 본문 분량**으로 충분한 내용을 담아줘.
 
-6. GPT가 작성했다는 문구는 절대 포함하지 마.
+8. GPT가 작성했다는 문구는 절대 포함하지 마.
 
-7. 블로그에 바로 업로드할 수 있는 최종 마크다운 형태로 작성해줘.
+9. 블로그에 바로 업로드할 수 있는 최종 마크다운 형태로 작성해줘.
 
 ※ 위 기준을 철저히 따라줘.
 """
@@ -68,13 +67,15 @@ response = client.chat.completions.create(
 # 결과 마크다운 텍스트
 markdown = response.choices[0].message.content
 
-# 제목에서 슬러그 추출 (title: "..." 라인 찾기)
-match = re.search(r'^title:\s*(?:"|“)?(.+?)(?:"|”)?\s*$', markdown, re.MULTILINE)
-if match:
-    raw_title = match.group(1)
-    slug = slugify(raw_title)
+# Front Matter의 slug 필드 추출
+slug_match = re.search(r'^slug:\s*(.+)$', markdown, re.MULTILINE)
+if slug_match:
+    slug = slug_match.group(1).strip()
 else:
-    slug = "auto"
+    # fallback: title 기반 슬러그
+    title_match = re.search(r'^title:\s*(?:"|“)?(.+?)(?:"|”)?\s*$', markdown, re.MULTILINE)
+    slug = re.sub(r"[^\w\s-]", "", title_match.group(1).strip().lower()) if title_match else "auto"
+    slug = re.sub(r"[\s]+", "-", slug)
 
 # 파일 저장
 filename = f"_posts/{today}-{slug}.md"
