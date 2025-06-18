@@ -325,8 +325,13 @@ defaults:
       comments: # true
       share: true
       related: true
+      sidebar: #사이드바 생성
+        nav: "main"
 
 collections:
   posts:
     output: true
     permalink: /:categories/:year/:month/:day/:title/
+
+sidebar:
+  position: left
