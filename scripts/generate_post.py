@@ -69,7 +69,7 @@ response = client.chat.completions.create(
 markdown = response.choices[0].message.content
 
 # 제목에서 슬러그 추출 (title: "..." 라인 찾기)
-match = re.search(r'^title:\s*["“](.+?)["”]', markdown, re.MULTILINE)
+match = re.search(r'^title:\s*(?:"|“)?(.+?)(?:"|”)?\s*$', markdown, re.MULTILINE)
 if match:
     raw_title = match.group(1)
     slug = slugify(raw_title)
