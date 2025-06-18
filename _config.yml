@@ -334,4 +334,5 @@ collections:
     permalink: /:categories/:year/:month/:day/:title/
 
 sidebar:
-  position: left
+  nav: "main"       # 모든 페이지에 main 사이드바를 적용
+  position: left    # 또는 right
