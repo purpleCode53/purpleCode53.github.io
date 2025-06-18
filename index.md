@@ -2,6 +2,7 @@
 layout: home
 title: "품질 높은 코드를 추구하는 개발자"
 author_profile: true
+paginate: true  # 최신 글이 리스트로 나옴
 header:
   overlay_color: "#000"
   overlay_filter: "0.2"
