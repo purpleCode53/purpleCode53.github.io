@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://purpleCode53.github.io/sitemap.xml
+Sitemap: https://purplecode53.github.io/sitemap.xml
