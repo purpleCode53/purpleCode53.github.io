@@ -310,7 +310,6 @@ compress_html:
   ignore:
     envs: development
 
-
 # Defaults
 defaults:
   # _posts
@@ -332,6 +331,10 @@ collections:
   posts:
     output: true
     permalink: /:categories/:year/:month/:day/:title/
+
+# 상단 네비게이션 (navbar)
+header:
+  nav: "header"
 
 sidebar:
   nav: "main"       # 모든 페이지에 main 사이드바를 적용

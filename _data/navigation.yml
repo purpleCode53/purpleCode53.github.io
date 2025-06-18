@@ -18,5 +18,9 @@ main:
     url: "/categories/"
   - title: "Tags"
     url: "/tags/"
+
+header:  # 상단바에 사용될 메뉴 그룹
+  - title: "GitHub"
+    url: "https://purplecode53.github.io"
   - title: "About"
     url: "/about/"
