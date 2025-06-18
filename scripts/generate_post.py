@@ -2,13 +2,18 @@ import os
 import re
 from openai import OpenAI
 from datetime import datetime
+import pytz
 
 # OpenAI 클라이언트 초기화
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+# 시간대 설정 (Asia/Seoul)
+tz = pytz.timezone("Asia/Seoul")
+now = datetime.now(tz)
+
 # 날짜 설정
-today = datetime.now().strftime("%Y-%m-%d")
-today_datetime = datetime.now().strftime("%Y-%m-%d 10:00:00 +0900")
+today = now.strftime("%Y-%m-%d")
+today_datetime = now.strftime("%Y-%m-%d 10:00:00 +0900")
 
 # 디렉토리 생성
 os.makedirs("_posts", exist_ok=True)
