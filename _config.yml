@@ -326,27 +326,11 @@ defaults:
       related: true
       sidebar: #사이드바 생성
         nav: "main"
-  # ignore sitemap scope
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      sitemap: false
-  - scope:
-      path: ""
-      type: "categories"
-    values:
-      sitemap: false
-  - scope:
-      path: ""
-      type: "tags"
-    values:
-      sitemap: false
 
 collections:
   posts:
     output: true
-    permalink: /:categories/:year/:month/:day/:title/
+    permalink: /:slug/
 
 # 상단 네비게이션 (navbar)
 header:
