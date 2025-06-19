@@ -3,7 +3,7 @@ layout: single
 title: 데이터베이스 인덱싱 전략과 성능 최적화
 date: 2025-06-19 09:00:00 +0900
 categories: database
-tags: database, indexing, performance optimization, query tuning
+tags: [database, indexing, performance optimization, query tuning]
 slug: database-indexing-strategy-and-performance-optimization
 show_date: false
 ---
