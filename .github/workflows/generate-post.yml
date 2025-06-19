@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: 3.13.5
 
+      - name: Install dependencies
+        run: pip install --upgrade openai pytz
+        
       - name: Install latest OpenAI SDK
         run: pip install openai --upgrade  # 최신 버전 설치
 
