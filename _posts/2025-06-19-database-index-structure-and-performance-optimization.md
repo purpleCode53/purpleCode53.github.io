@@ -3,7 +3,7 @@ layout: single
 title: 데이터베이스 인덱스 구조와 성능 최적화 전략
 date: 2025-06-19 15:00:00 +0900
 categories: database
-tags: 데이터베이스, 인덱스, 성능 최적화, 검색 엔진, 인덱싱 전략
+tags: [데이터베이스, 인덱스, 성능 최적화, 검색 엔진, 인덱싱 전략]
 slug: database-index-structure-and-performance-optimization
 show_date: false
 ---
