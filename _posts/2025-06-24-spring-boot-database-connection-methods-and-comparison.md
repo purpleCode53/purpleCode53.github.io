@@ -3,7 +3,7 @@ layout: single
 title: Spring Boot에서의 데이터베이스 연동 방법과 비교 분석
 date: 2025-06-24 13:00:00 +0900
 categories: database
-tags: java, springboot, database, jpa, jdbc, mybatis
+tags: [java, springboot, database, jpa, jdbc, mybatis]
 slug: spring-boot-database-connection-methods-and-comparison
 show_date: false
 ---
