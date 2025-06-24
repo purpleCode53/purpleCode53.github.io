@@ -3,7 +3,7 @@ layout: single
 title: Spring Boot를 활용한 데이터베이스 마이그레이션 전략
 date: 2025-06-23 15:00:00 +0900
 categories: database
-tags: java, springboot, database, migration, performance, scalability
+tags: [java, springboot, database, migration, performance, scalability]
 slug: spring-boot-database-migration-strategy
 show_date: false
 ---
@@ -41,6 +41,7 @@ Liquibase는 XML 또는 YAML 형식의 변경 로그를 사용해 데이터베�
   - XML 또는 YAML 형식의 변경 로그 작성이 필요
 
 ## 마크다운 테이블로 정리
+
 | 도구      | 장점                            | 단점                                  |
 |-----------|---------------------------------|---------------------------------------|
 | Flyway    | 간편한 설정, 안정적인 마이그레이션 | 복잡한 스키마 변경에 제약이 있음     |
