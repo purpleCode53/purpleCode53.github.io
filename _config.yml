@@ -234,7 +234,7 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Pagination with jekyll-paginate
 paginate: 5 # amount of posts to show
-paginate_path: /page:num/
+paginate_path: "/posts/page:num/"
 
 # Pagination with jekyll-paginate-v2
 # See https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
@@ -339,3 +339,4 @@ header:
 sidebar:
   nav: "main"       # 모든 페이지에 main 사이드바를 적용
   position: left    # 또는 right
+
